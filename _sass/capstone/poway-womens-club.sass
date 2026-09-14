@@ -1,0 +1,151 @@
+// Poway Women's Club capstone styles
+// Uses site color variables from root-color-map
+
+$pwc-radius: 16px
+$pwc-gap: 1rem
+
+// Mixin: shared panel surface used by the hero and every section
+@mixin pwc-surface($padding: 1.15rem)
+  border: 1px solid rgba($accent, 0.3)
+  border-radius: $pwc-radius
+  background: $panel
+  box-shadow: 0 10px 30px rgba($bg-0, 0.4)
+  padding: $padding
+
+// Mixin: responsive grid that collapses to one column on small screens
+@mixin pwc-responsive-grid($min-width: 860px)
+  display: grid
+  grid-template-columns: 1fr
+  gap: $pwc-gap
+
+  @media (min-width: $min-width)
+    grid-template-columns: 1fr 1fr
+
+.pwc-page
+  max-width: 1080px
+  margin: 0 auto
+  padding: 1.2rem
+  color: $text
+
+  p,
+  li
+    color: $text-muted
+    line-height: 1.56
+
+  h2
+    margin-top: 0
+    margin-bottom: 0.65rem
+    font-size: 1.3rem
+    color: $text
+
+.pwc-hero
+  @include pwc-surface(1.4rem)
+  margin-bottom: $pwc-gap
+
+  h1
+    margin: 0
+    font-size: clamp(1.8rem, 4.8vw, 3rem)
+
+    span
+      color: $accent
+
+.pwc-kicker
+  margin: 0 0 0.5rem
+  letter-spacing: 0.1em
+  text-transform: uppercase
+  color: $accent
+  font-weight: 700
+  font-size: 0.78rem
+
+.pwc-subtitle
+  margin: 0.35rem 0 0
+  color: $teal
+  font-weight: 700
+
+.pwc-summary
+  margin: 0.9rem 0 1rem
+  max-width: 78ch
+
+.pwc-panel
+  @include pwc-surface
+  margin-bottom: $pwc-gap
+
+  blockquote
+    margin: 1rem 0 0
+    border-left: 3px solid $accent
+    padding: 0.5rem 0.8rem
+    background: $bg-1
+    color: $text
+
+.pwc-grid
+  @include pwc-responsive-grid
+  margin-bottom: $pwc-gap
+
+.pwc-users
+  @include pwc-responsive-grid(700px)
+  list-style: none
+  padding: 0
+  gap: 0.5rem
+
+  li
+    border-left: 3px solid rgba($accent, 0.5)
+    padding: 0.4rem 0.7rem
+    background: $bg-1
+    border-radius: 0 6px 6px 0
+
+.pwc-flow
+  list-style: none
+  margin: 0
+  padding: 0
+  display: grid
+  gap: 0.55rem
+  counter-reset: pwc-step
+
+  li
+    counter-increment: pwc-step
+    border: 1px solid rgba($accent, 0.28)
+    border-radius: 10px
+    background: $bg-1
+    padding: 0.64rem 0.78rem
+
+    &::before
+      content: counter(pwc-step) ". "
+      color: $accent
+      font-weight: 700
+
+.pwc-table
+  border: 1px solid rgba($accent, 0.3)
+  border-radius: 12px
+  overflow: hidden
+
+.pwc-row
+  display: grid
+  grid-template-columns: 170px 1fr
+
+  > div
+    padding: 0.7rem 0.75rem
+    border-top: 1px solid rgba($accent, 0.15)
+
+    &:first-child
+      border-right: 1px solid rgba($accent, 0.15)
+      color: $text
+      font-weight: 700
+
+  &--head > div
+    border-top: 0
+    background: rgba($accent, 0.1)
+    color: $accent
+    text-transform: uppercase
+    letter-spacing: 0.08em
+    font-size: 0.74rem
+
+  @media (max-width: 600px)
+    grid-template-columns: 1fr
+
+    > div:first-child
+      border-right: 0
+      border-bottom: 1px solid rgba($accent, 0.15)
+
+.pwc-note
+  margin-top: 1rem
+  font-style: italic
